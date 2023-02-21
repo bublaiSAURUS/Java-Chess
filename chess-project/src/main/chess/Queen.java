@@ -24,6 +24,8 @@ class Queen extends Piece{
 
 	@Override
 	boolean isLegitMove(int i0, int j0, int i1, int j1) {
+		if(i0==i1 && j0==j1)
+		return false;
 		if(Board.hasPiece(i1, j1))
 		{
 			if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK && Board.getPiece(i1, j1).getColour()==PieceColour.BLACK)

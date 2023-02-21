@@ -25,6 +25,12 @@ class Pawn extends Piece{
 	@Override
 	boolean isLegitMove(int i0, int j0, int i1, int j1) 
 	{
+		if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK && Board.getPiece(i1, j1).getColour()==PieceColour.BLACK)
+			return false;
+		else if (Board.getPiece(i0, j0).getColour()==PieceColour.WHITE && Board.getPiece(i1, j1).getColour()==PieceColour.WHITE)
+			return false;
+		if(i0==i1 && j0==j1)
+		return false;
 		if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK)
 		{
 			if(i1<i0)
@@ -46,6 +52,11 @@ class Pawn extends Piece{
 			{
 				if(i0 != 6 && i0 != 1)
 				return false;
+				else if (i0==6 || i0==1)
+				{
+					if(Board.hasPiece(i1, j1))
+					return false;
+				}
 			}
 			else if(Math.max(i0,i1)-Math.min(i0,i1)>2)
 			return false;

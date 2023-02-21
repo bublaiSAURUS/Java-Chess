@@ -23,6 +23,8 @@ class Rook extends Piece{
 	}
 
 	boolean isLegitMove(int i0, int j0, int i1, int j1) {
+		if(i0==i1 && j0==j1)
+		return false;
 		int f1 = 0;
 		int a = 0; int b = 0;
 		if((i0 != i1) && (j0 != j1))
