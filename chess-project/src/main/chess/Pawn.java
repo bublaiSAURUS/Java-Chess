@@ -1,5 +1,7 @@
 package chess;
 
+import javax.lang.model.util.ElementScanner14;
+
 class Pawn extends Piece{
 	private PieceColour colour;
 	private String symbol;
@@ -25,58 +27,41 @@ class Pawn extends Piece{
 	@Override
 	boolean isLegitMove(int i0, int j0, int i1, int j1) 
 	{
-		if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK && Board.getPiece(i1, j1).getColour()==PieceColour.BLACK)
-			return false;
-		else if (Board.getPiece(i0, j0).getColour()==PieceColour.WHITE && Board.getPiece(i1, j1).getColour()==PieceColour.WHITE)
-			return false;
-		if(i0==i1 && j0==j1)
-		return false;
+		int update_col=0;
 		if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK)
-		{
-			if(i1<i0)
-			return false;
-		}
-		else if(Board.getPiece(i0, j0).getColour()==PieceColour.WHITE)
-		{
-			if(i1>i0)
-			return false;
-		}
+		{update_col = 1;}
+		else
+		{update_col = -1;}
 		if(j0==j1)
-		{
-			if(Math.max(i0,i1)-Math.min(i0,i1)==1)
+		{	if(i0!=6 && i0!=1)
 			{
-				if(Board.hasPiece(i1,j1))
+				if(i0+update_col==i1 && Board.hasPiece(i1, j1)==false)
+				return true;
+				else
 				return false;
 			}
-			else if(Math.max(i0,i1)-Math.min(i0,i1)==2)
+			if(i0==6 || i0==1)
 			{
-				if(i0 != 6 && i0 != 1)
+				if(i0==6 && i1==4 && Board.hasPiece(i1, j1)==false)
+				return true;
+				else if(i0==1 && i1==3 && Board.hasPiece(i1, j1)==false)
+				return true;
+				else if (i0+update_col==i1 && Board.hasPiece(i1, j1)==false)
+				return true;
+				else
 				return false;
-				else if (i0==6 || i0==1)
-				{
-					if(Board.hasPiece(i1, j1))
-					return false;
-				}
+
 			}
-			else if(Math.max(i0,i1)-Math.min(i0,i1)>2)
-			return false;
 		}
-		else if(Math.max(i0,i1)-Math.min(i0,i1)==1 && Math.max(j0,j1)-Math.min(j0,j1)==1 )
+		else if ((int)Math.abs(j0-j1)==1 && i0+update_col==i1 && Board.hasPiece(i1, j1)==true)
 		{
-			if(Board.hasPiece(i1, j1))
-			{
-				if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK && Board.getPiece(i1, j1).getColour()==PieceColour.BLACK)
+			if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK && Board.getPiece(i1, j1).getColour()==PieceColour.BLACK)
 				return false;
-				else if (Board.getPiece(i0, j0).getColour()==PieceColour.WHITE && Board.getPiece(i1, j1).getColour()==PieceColour.WHITE)
+			else if (Board.getPiece(i0, j0).getColour()==PieceColour.WHITE && Board.getPiece(i1, j1).getColour()==PieceColour.WHITE)
 				return false;
-			}
 			else
-			return false;
+				return true;
 		}
-		else if(Math.max(i0,i1)-Math.min(i0,i1)>1 && Math.max(j0,j1)-Math.min(j0,j1)>1)
 		return false;
-		else if(Math.max(j0,j1)-Math.min(j0,j1)>=1 && Math.max(i0,i1)-Math.min(i0,i1)!=1)
-		return false;
-		return true;
 	}
 }
