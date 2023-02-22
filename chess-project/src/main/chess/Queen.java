@@ -24,6 +24,7 @@ class Queen extends Piece{
 
 	@Override
 	public boolean isLegitMove(int i0, int j0, int i1, int j1) {
+		int i; int p = 0;
 		if(i0==i1 && j0==j1)
 		return false;
 		if(Board.hasPiece(i1, j1))
@@ -32,84 +33,48 @@ class Queen extends Piece{
 			return false;
 		else if (Board.getPiece(i0, j0).getColour()==PieceColour.WHITE && Board.getPiece(i1, j1).getColour()==PieceColour.WHITE)
 			return false;
+		else 
+			p = 1;
 		}
-		if((int)Math.abs(i0-i1)==(int)Math.abs(j0-j1))
+		if((int)Math.abs(i1-i0)==(int)Math.abs(j1-j0))
 		{
-			int update_col = (i1-i0)/(int)(Math.abs(i1-i0));
-			int update_row = (j1-j0)/(int)(Math.abs(j1-j0));
-			int start_col = i0;
-			int end_col = i1;
-			int start_row = j0;
-			int end_row = j1;
-			int count = 0; int a = 0; int b = 0;
-			while(start_col!=end_col && start_row!=end_row)
+			int update_col = (i1-i0)/(int)Math.abs(i1-i0);
+			int update_row = (j1-j0)/(int)Math.abs(j1-j0);
+			int start_row = j0+update_row; int start_col = i0+update_col; 
+			while(start_row!=j1 && start_col!=i1)
 			{
-				if(Board.hasPiece(start_col,start_row))
+				if(Board.hasPiece(start_col, start_row))
 				{
-					a = start_col;
-					b = start_row;
-					count++;
+					break;
 				}
-				start_col = start_col+update_col;
-				start_row = start_row+update_row;
-					
+					start_row = start_row+update_row;	
+					start_col = start_col+update_col;
 			}
-			if(count>2)
+			if(start_row==j1 && start_col==i1)
+			return true;
+			else
 			return false;
-			else if(count == 2)
+		}
+		else if(i0==i1)
+		{
+			int dx = (j0<j1)?1:-1;
+			for(i= j0+dx;i!=j1;i+=dx)
 			{
-				if(a!=i1 && b!=j1)
+				if(Board.hasPiece(i0, i))
 				return false;
 			}
 		}
-		else if(i0 == i1)
+		else if(j0==j1)
 		{
-			int update_row = (j1-j0)/(int)(Math.abs(j1-j0));
-			int start_row = j0;
-			int end_row = j1;
-			int count = 0; int b = 0;
-			while(start_row!=end_row)
+			int dy = (i0<i1)?1:-1;
+			for(i = i0+dy; i!=i1 ; i+=dy)
 			{
-				if(Board.hasPiece(i0,start_row))
-				{
-					b = start_row;
-					count++;
-				}
-				start_row = start_row+update_row;		
-			}
-			if(count>2)
-			return false;
-			else if(count == 2)
-			{
-				if(b!=j1)
+				if(Board.hasPiece(i, j0))
 				return false;
 			}
 		}
-		else if( j0 == j1)
-		{
-			int update_col = (i1-i0)/(int)(Math.abs(i1-i0));
-			int start_col = i0;
-			int end_col = i1;
-			int count = 0; int a = 0;
-			while(start_col!=end_col)
-			{
-				if(Board.hasPiece(j0,start_col))
-				{
-					a = start_col;
-					count++;
-				}
-				start_col = start_col+update_col;		
-			}
-			if(count>2)
-			return false;
-			else if(count == 2)
-			{
-				if(a!=i1)
-				return false;
-			}
-		}
-		else if((int)Math.abs(i0-i1)!=(int)Math.abs(j0-j1) && (j0 != j1) && (i0!=i1))
+		else
 		return false;
-		return true;
+		return (Board.hasPiece(i1, j1)==false || p==1);
 	}
 }
