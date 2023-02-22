@@ -23,9 +23,18 @@ class Rook extends Piece{
 	}
 
 	public boolean isLegitMove(int i0, int j0, int i1, int j1) {
-		int i;
+		int i; int p = 0;
 		if(i0==i1 && j0==j1)
 		return false;
+		if(Board.hasPiece(i1, j1))
+		{
+			if(Board.getPiece(i0, j0).getColour()==PieceColour.BLACK && Board.getPiece(i1, j1).getColour()==PieceColour.BLACK)
+			return false;
+		else if (Board.getPiece(i0, j0).getColour()==PieceColour.WHITE && Board.getPiece(i1, j1).getColour()==PieceColour.WHITE)
+			return false;
+		else 
+			p = 1;
+		}
 		if(i0==i1)
 		{
 			int dx = (j0<j1)?1:-1;
@@ -46,6 +55,6 @@ class Rook extends Piece{
 		}
 		else
 		return false;
-		return Board.hasPiece(i1, j1)==false;
+		return (Board.hasPiece(i1, j1)==false || p==1);
 	}
 }
