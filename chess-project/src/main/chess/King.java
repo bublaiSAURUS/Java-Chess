@@ -1,21 +1,21 @@
 package chess;
 
 class King extends Piece{
-	private PieceColour colour;
-	private String symbol;
+	
 
 	public King(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){
-			this.colour=PieceColour.WHITE;
-			this.symbol="♔";
+			colour = PieceColour.WHITE;
+			super.setSymbol("♔");;
 		}
 		else if (pc.equals(PieceColour.BLACK)){
-			this.colour=PieceColour.BLACK;
-			this.symbol="♚";
+			colour=PieceColour.BLACK;
+			super.setSymbol("♚");
+
 		}
 	}
 	public String getSymbol(){
-		return symbol;
+		return super.getSymbol();
 	}
 	public PieceColour getColour(){
 		return colour;
