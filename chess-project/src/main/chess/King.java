@@ -18,7 +18,7 @@ class King extends Piece{
 		return super.getSymbol();
 	}
 	public PieceColour getColour(){
-		return colour;
+		return super.getColour();
 	}
 
 	@Override
