@@ -1,12 +1,12 @@
 package chess;
 
-import javax.lang.model.util.ElementScanner14;
+
 
 class Bishop extends Piece{
 	private PieceColour colour;
 	private String symbol;
 
-	Bishop(PieceColour pc){
+	public Bishop(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){
 			this.colour=PieceColour.WHITE;
 			this.symbol="♗";
@@ -25,7 +25,7 @@ class Bishop extends Piece{
 	}
 
 	@Override
-	boolean isLegitMove(int i0, int j0, int i1, int j1) {
+	public boolean isLegitMove(int i0, int j0, int i1, int j1) {
 		if(Board.hasPiece(i1, j1))
 				{
 					if(Board.getPiece(i1,j1).getColour()==PieceColour.WHITE && Board.getPiece(i0, j0).getColour()==PieceColour.WHITE)

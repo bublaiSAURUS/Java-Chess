@@ -4,7 +4,7 @@ class Knight extends Piece{
 	private PieceColour colour;
 	private String symbol;
 
- 	Knight(PieceColour pc){
+ 	public Knight(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){
 			this.colour=PieceColour.WHITE;
 			this.symbol="♘";
@@ -23,7 +23,7 @@ class Knight extends Piece{
 	}
 
 	@Override
-	boolean isLegitMove(int i0, int j0, int i1, int j1) {
+	public boolean isLegitMove(int i0, int j0, int i1, int j1) {
 		if(i0==i1 && j0==j1)
 		return false;
 		if((int)Math.abs(i0 -  i1)>2 || (int)Math.abs(j0-j1)>2)
