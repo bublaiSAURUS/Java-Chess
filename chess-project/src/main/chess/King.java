@@ -5,12 +5,12 @@ class King extends Piece{
 
 	public King(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){
-			colour = PieceColour.WHITE;
 			super.setSymbol("♔");
+			colour = PieceColour.WHITE;
 		}
 		else if (pc.equals(PieceColour.BLACK)){
-			colour=PieceColour.BLACK;
 			super.setSymbol("♚");
+			colour=PieceColour.BLACK;
 
 		}
 	}
