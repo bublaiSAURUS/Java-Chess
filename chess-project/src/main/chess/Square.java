@@ -1,6 +1,6 @@
 package chess;
 
-class Square {
+public class Square {
 	private boolean hasPiece;
 	private Piece p;
 
