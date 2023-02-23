@@ -1,16 +1,16 @@
 package chess;
 
-class King extends Piece{
+public class King extends Piece{
 	
 
 	public King(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){
 			super.setSymbol("♔");
-			colour = PieceColour.WHITE;
+			super.colour = PieceColour.WHITE;
 		}
 		else if (pc.equals(PieceColour.BLACK)){
 			super.setSymbol("♚");
-			colour=PieceColour.BLACK;
+			super.colour=PieceColour.BLACK;
 
 		}
 	}
