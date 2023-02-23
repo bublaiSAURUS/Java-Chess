@@ -1,26 +1,19 @@
 package chess;
 
 
-class Knight extends Piece{
-	private PieceColour colour;
-	private String symbol;
+public class Knight extends Piece{
+	
 
  	public Knight(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){
-			this.colour=PieceColour.WHITE;
-			this.symbol="♘";
+			super.setSymbol("♘");
+			super.colour=PieceColour.WHITE;
 		}
 		else if (pc.equals(PieceColour.BLACK)){
-			this.colour=PieceColour.BLACK;
-			this.symbol="♞";
+			super.setSymbol("♞");
+			super.colour=PieceColour.BLACK;
+			
 		}
-	}
-
-	public String getSymbol(){
-		return symbol;
-	}
-	public PieceColour getColour(){
-		return colour;
 	}
 
 	@Override

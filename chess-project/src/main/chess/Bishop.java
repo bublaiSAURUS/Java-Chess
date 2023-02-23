@@ -2,7 +2,7 @@ package chess;
 
 
 
-class Bishop extends Piece{
+public class Bishop extends Piece{
 
 	public Bishop(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){

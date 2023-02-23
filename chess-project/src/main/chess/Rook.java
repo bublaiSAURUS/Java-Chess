@@ -1,25 +1,16 @@
 package chess;
 
-class Rook extends Piece{
-	private PieceColour colour;
-	private String symbol;
+public class Rook extends Piece{
 
 	public Rook(PieceColour pc){
 		if (pc.equals(PieceColour.WHITE)){
-			this.colour=PieceColour.WHITE;
-			this.symbol="♖";
+			super.setSymbol("♖");
+			super.colour=PieceColour.WHITE;
 		}
 		else if (pc.equals(PieceColour.BLACK)){
-			this.colour=PieceColour.BLACK;
-			this.symbol="♜";
+			super.setSymbol("♜");
+			super.colour=PieceColour.BLACK;
 		}
-	}
-
-	public String getSymbol(){
-		return symbol;
-	}
-	public PieceColour getColour(){
-		return colour;
 	}
 
 	public boolean isLegitMove(int i0, int j0, int i1, int j1) {
